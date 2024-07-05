@@ -19,7 +19,6 @@ const SearchBox = () => {
   );
   const handleSearch = (e: any) => {
     e.preventDefault();
-    console.log(e.target);
     push(`/search` + "?" + createQueryString("product_name", searcQuery));
   };
   return (

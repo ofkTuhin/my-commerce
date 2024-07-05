@@ -21,7 +21,6 @@ const Home = () => {
   }
 
   const addToCart = (product: any) => {
-    console.log(product);
     dispatch(
       insertCart({
         id: product.id,

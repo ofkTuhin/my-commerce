@@ -5,7 +5,6 @@ import { FaShoppingBag } from "react-icons/fa";
 
 const Header = () => {
   const cartItems = useAppSelector((state) => state.cart);
-  console.log(cartItems);
   return (
     <header className="py-4 shadow-sm bg-white">
       <div className="container flex items-center justify-between">

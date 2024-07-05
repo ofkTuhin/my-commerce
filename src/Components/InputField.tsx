@@ -3,7 +3,7 @@ const InputField = ({ ...rest }) => {
   return (
     <div>
       <input
-        className={`w-full appearance-none rounded-2xl border py-2 px-3 leading-tight text-gray-700 shadow-md focus:ring-0 focus:outline focus:outline-cyan-500 ${
+        className={`w-full appearance-none rounded-lg border py-2 px-3 leading-tight text-gray-700 shadow-md focus:ring-0 focus:outline focus:outline-cyan-500 ${
           rest?.error ? "border-red-500" : ""
         }`}
         {...rest}
