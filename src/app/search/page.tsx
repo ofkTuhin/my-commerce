@@ -2,26 +2,27 @@
 
 import SearchBox from "@/Components/SearchBox";
 import SortDropdown from "@/Components/SortDrpDown";
-import { useGetProductsQuery } from "@/redux/features/products/productApiSlice";
+import { useGetSearchProductsQuery } from "@/redux/features/products/productApiSlice";
 import { Flex } from "@radix-ui/themes";
 import { useSearchParams } from "next/navigation";
 
-const Home = () => {
+const Search = () => {
   const order = useSearchParams().get("order");
-  const { currentData, isLoading } = useGetProductsQuery({
+  const product_name = useSearchParams().get("product_name");
+  const { currentData, isLoading } = useGetSearchProductsQuery({
+    product_name: product_name,
     order: order,
   }) as any;
-
   const { products } = currentData || {};
   if (isLoading) {
     <div>Loding...</div>;
   }
-
   return (
     <>
       <section className="section pt-14">
         <div className="container pb-16">
           <Flex justify={"between"} align={"center"} className="mb-6">
+            {" "}
             <SearchBox />
             <SortDropdown />
           </Flex>
@@ -111,4 +112,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Search;

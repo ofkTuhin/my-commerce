@@ -1,32 +1,43 @@
 "use client";
 import { Button, DropdownMenu } from "@radix-ui/themes";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useCallback } from "react";
 
-const SortDropdown = ({
-  onSortChange,
-}: {
-  onSortChange: (order: string) => void;
-}) => {
-  const handleSortChange = (order: string) => {
-    onSortChange(order);
-  };
+const SortDropdown = () => {
+  const { push } = useRouter();
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams],
+  );
 
   return (
     <DropdownMenu.Root>
-      <DropdownMenu.Trigger className="cursor-pointer">
-        <Button variant="soft" size="3">
+      <DropdownMenu.Trigger>
+        <Button variant="soft" size="3" className="cursor-pointer">
           Sort by
           <DropdownMenu.TriggerIcon />
         </Button>
       </DropdownMenu.Trigger>
       <DropdownMenu.Content size="2">
         <DropdownMenu.Item
-          onClick={() => handleSortChange("asc")}
+          onClick={() =>
+            push(pathname + "?" + createQueryString("order", "asc"))
+          }
           className="cursor-pointer"
         >
           A-Z
         </DropdownMenu.Item>
         <DropdownMenu.Item
-          onClick={() => handleSortChange("desc")}
+          onClick={() =>
+            push(pathname + "?" + createQueryString("order", "desc"))
+          }
           className="cursor-pointer"
         >
           Z-A
