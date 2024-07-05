@@ -1,29 +1,40 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import SortDropdown from "@/Components/SortDrpDown";
+import { useGetProductsQuery } from "@/redux/features/products/productApiSlice";
+import { Flex } from "@radix-ui/themes";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const Home = () => {
-  const [data, setData] = useState<[any]>();
-  useEffect(() => {
-    const data = async () => {
-      const res = await fetch("https://dummyjson.com/products");
-      const json = await res.json();
-      setData(json.products);
-    };
-    data();
-  }, []);
-  if (!data?.length) {
+  const { push } = useRouter();
+  const sort = useSearchParams().get("sort");
+  const order = useSearchParams().get("order");
+  const pathname = usePathname();
+  const { currentData, isLoading } = useGetProductsQuery({
+    sort: sort,
+    order: order,
+  }) as any;
+
+  const { products } = currentData || {};
+  if (isLoading) {
     <div>Loding...</div>;
   }
+  const handleSortings = (order: string) => {
+    push(pathname + `?sort=title&order=${order}`);
+  };
   return (
     <>
       <section className="section pt-14">
         <div className="container pb-16">
-          <h2 className="text-2xl font-medium text-gray-800 uppercase mb-6">
-            recomended for you
-          </h2>
+          <Flex justify={"between"}>
+            {" "}
+            <h2 className="text-2xl font-medium text-gray-800 uppercase mb-6">
+              recomended for you
+            </h2>
+            <SortDropdown onSortChange={handleSortings} />
+          </Flex>
           <div className="row lg:row-cols-5 md:row-cols-3 sm:row-cols-2">
-            {data?.map((item) => (
+            {products?.map((item: any) => (
               <div className="col mb-6" key={item.title}>
                 <div className="bg-white shadow rounded overflow-hidden  ">
                   <div className="relative">

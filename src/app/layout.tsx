@@ -1,6 +1,9 @@
+import { ReduxProvider } from "@/Components/ReduxProvider";
 import config from "@/config/config.json";
 import theme from "@/config/theme.json";
 import "@/styles/main.scss";
+import { Theme } from "@radix-ui/themes";
+import "@radix-ui/themes/styles.css";
 
 export default function RootLayout({
   children,
@@ -50,7 +53,11 @@ export default function RootLayout({
         />
       </head>
 
-      <body suppressHydrationWarning={true}>{children}</body>
+      <body suppressHydrationWarning={true}>
+        <ReduxProvider>
+          <Theme>{children}</Theme>
+        </ReduxProvider>
+      </body>
     </html>
   );
 }
