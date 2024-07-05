@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { api } from "./features/api/apiSlice";
 import { authApi } from "./authApiSlice";
 import authReducer from "./authSlice";
+import { api } from "./features/api/apiSlice";
 import bookingReducer from "./features/booking/bookingSlice";
+import cartReducer from "./features/cart/cartSlice";
 
 // import cartRducer from './features/cart/cartSlice';
 // import productReducer from './features/product/productSlice';
@@ -14,6 +15,7 @@ export const store = configureStore({
     [api.reducerPath]: api.reducer,
     auth: authReducer,
     booking: bookingReducer,
+    cart: cartReducer,
     [authApi.reducerPath]: authApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

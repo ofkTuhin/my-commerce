@@ -1,3 +1,4 @@
+import Header from "@/Components/Header";
 import { ReduxProvider } from "@/Components/ReduxProvider";
 import config from "@/config/config.json";
 import theme from "@/config/theme.json";
@@ -55,7 +56,10 @@ export default function RootLayout({
 
       <body suppressHydrationWarning={true}>
         <ReduxProvider>
-          <Theme>{children}</Theme>
+          <Theme>
+            <Header />
+            {children}
+          </Theme>
         </ReduxProvider>
       </body>
     </html>

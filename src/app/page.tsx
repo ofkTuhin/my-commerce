@@ -2,12 +2,15 @@
 
 import SearchBox from "@/Components/SearchBox";
 import SortDropdown from "@/Components/SortDrpDown";
+import { insertCart } from "@/redux/features/cart/cartSlice";
 import { useGetProductsQuery } from "@/redux/features/products/productApiSlice";
+import { useAppDispatch } from "@/redux/hook";
 import { Flex } from "@radix-ui/themes";
 import { useSearchParams } from "next/navigation";
 
 const Home = () => {
   const order = useSearchParams().get("order");
+  const dispatch = useAppDispatch();
   const { currentData, isLoading } = useGetProductsQuery({
     order: order,
   }) as any;
@@ -16,6 +19,20 @@ const Home = () => {
   if (isLoading) {
     <div>Loding...</div>;
   }
+
+  const addToCart = (product: any) => {
+    console.log(product);
+    dispatch(
+      insertCart({
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        thumbnail: product.thumbnail,
+        quantity: 1,
+        stock: product.stock,
+      }),
+    );
+  };
 
   return (
     <>
@@ -95,12 +112,12 @@ const Home = () => {
                       </div>
                     </div>
                   </div>
-                  <a
-                    href="#"
+                  <button
+                    onClick={() => addToCart(item)}
                     className="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition"
                   >
                     Add to cart
-                  </a>
+                  </button>
                 </div>
               </div>
             ))}
