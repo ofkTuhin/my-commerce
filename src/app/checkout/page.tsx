@@ -2,14 +2,27 @@
 
 import CheckoutSummary from "@/Components/CheckoutSummary";
 import InputField from "@/Components/InputField";
-import { useAppSelector } from "@/redux/hook";
+import useAuth from "@/hooks/useAuth";
+import useAuthCheck from "@/hooks/useAuthChecked";
+import { useRouter } from "next/navigation";
 
 const Checkout = () => {
-  const cartItems = useAppSelector((state) => state.cart);
-  const total = cartItems
-    .reduce((acc, item) => acc + item.price! * item.quantity!, 0)
-    .toFixed(2);
-  return (
+  const { push } = useRouter();
+  const authcheck = useAuthCheck();
+
+  const isLogin = useAuth();
+  console.log(isLogin);
+  // useEffect(() => {
+  //   if (!isLogin) {
+  //     return push("/login");
+  //   }
+  // }, []);
+  if (!authcheck) {
+    return <div>auth checking</div>;
+  }
+  return !isLogin ? (
+    push("/login")
+  ) : (
     <section className="section pt-14">
       <div className="container pb-16">
         <div className=" flex items-center gap-3">

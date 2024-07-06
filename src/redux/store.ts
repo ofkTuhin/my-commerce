@@ -1,7 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { authApi } from "./authApiSlice";
-import authReducer from "./authSlice";
 import { api } from "./features/api/apiSlice";
+import authReducer from "./features/auth/authSlice";
 import bookingReducer from "./features/booking/bookingSlice";
 import cartReducer from "./features/cart/cartSlice";
 
@@ -16,10 +15,9 @@ export const store = configureStore({
     auth: authReducer,
     booking: bookingReducer,
     cart: cartReducer,
-    [authApi.reducerPath]: authApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(api.middleware).concat(authApi.middleware),
+    getDefaultMiddleware().concat(api.middleware),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
