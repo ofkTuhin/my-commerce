@@ -4,9 +4,10 @@ import {
   removeItem,
 } from "@/redux/features/cart/cartSlice";
 import { useAppDispatch } from "@/redux/hook";
+import { ICartItem } from "@/types";
 import { FaMinus, FaPlus, FaTrashAlt } from "react-icons/fa";
 
-const CartItem = ({ item }: { item: any }) => {
+const CartItem = ({ item }: { item: ICartItem }) => {
   const dispatch = useAppDispatch();
 
   // increment
@@ -41,7 +42,7 @@ const CartItem = ({ item }: { item: any }) => {
       </div>
       <div className="flex items-center mt-2">
         <button
-          onClick={() => handleDecrement(item.id, item.quantity)}
+          onClick={() => handleDecrement(item.id, item.quantity!)}
           className="text-white bg-primary p-2 rounded hover:bg-gray-800 transition"
         >
           <FaMinus />

@@ -15,8 +15,6 @@ const CheckoutButton = ({ total }: { total: string }) => {
       const res = await fetch("/api/stripe/checkout-session", {
         method: "POST",
         body: JSON.stringify({
-          amount: total,
-          quantity: 1,
           products: cartItems,
         } as any),
         headers: {

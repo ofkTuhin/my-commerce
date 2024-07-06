@@ -1,6 +1,6 @@
 "use client";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useState } from "react";
+import { ChangeEvent, FormEvent, useCallback, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import InputField from "./InputField";
 
@@ -17,7 +17,7 @@ const SearchBox = () => {
     },
     [searchParams],
   );
-  const handleSearch = (e: any) => {
+  const handleSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     push(`/search` + "?" + createQueryString("product_name", searcQuery));
   };
@@ -29,7 +29,9 @@ const SearchBox = () => {
           name="search"
           placeholder="Search..."
           value={searcQuery}
-          onChange={(e: any) => setSearchQuery(e.target.value)}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setSearchQuery(e.target.value)
+          }
         />
         <button
           type="submit"

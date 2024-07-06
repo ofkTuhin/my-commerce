@@ -1,4 +1,5 @@
 import { useAppSelector } from "@/redux/hook";
+import { ICartItem } from "@/types";
 import CheckoutButton from "./CheckoutButton";
 import InputField from "./InputField";
 const CheckoutSummary = () => {
@@ -12,7 +13,7 @@ const CheckoutSummary = () => {
         order summary
       </h4>
       <div className="space-y-2">
-        {cartItems.map((item) => (
+        {cartItems.map((item: ICartItem) => (
           <div className="flex justify-between" key={item.id}>
             <div className="w-2/3 ">
               <h5 className="text-gray-800 font-medium">{item.title}</h5>
