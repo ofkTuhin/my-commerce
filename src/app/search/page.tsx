@@ -23,7 +23,9 @@ const Search = () => {
         <div className="container pb-16">
           <FilterLayout />
           <div className="row lg:row-cols-5 md:row-cols-3 sm:row-cols-2">
-            {products?.map((item: ICartItem) => <ProductCart item={item} />)}
+            {products?.map((item: ICartItem) => (
+              <ProductCart item={item} key={item.id} />
+            ))}
           </div>
         </div>
       </section>

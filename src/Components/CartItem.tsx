@@ -29,7 +29,7 @@ const CartItem = ({ item }: { item: ICartItem }) => {
   };
   return (
     <div className="flex items-center justify-between p-4 border-b">
-      <div className="flex items-center">
+      <div className="flex items-center w-2/3">
         <img
           src={item.thumbnail}
           alt={item.title}
@@ -40,7 +40,7 @@ const CartItem = ({ item }: { item: ICartItem }) => {
           <p className="text-sm text-gray-500">Stock: {item.stock}</p>
         </div>
       </div>
-      <div className="flex items-center mt-2">
+      <div className="flex items-center mt-2  w-12">
         <button
           onClick={() => handleDecrement(item.id, item.quantity!)}
           className="text-white bg-primary p-2 rounded hover:bg-gray-800 transition"

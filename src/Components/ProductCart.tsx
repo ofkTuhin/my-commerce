@@ -1,6 +1,21 @@
+import { insertCart } from "@/redux/features/cart/cartSlice";
+import { useAppDispatch } from "@/redux/hook";
 import { ICartItem } from "@/types";
 
 const ProductCart = ({ item }: { item: ICartItem }) => {
+  const dispatch = useAppDispatch();
+  const addToCart = () => {
+    dispatch(
+      insertCart({
+        id: item.id,
+        title: item.title,
+        price: item.price,
+        thumbnail: item.thumbnail,
+        quantity: 1,
+        stock: item.stock,
+      }),
+    );
+  };
   return (
     <div className="col mb-6" key={item.title}>
       <div className="bg-white shadow rounded overflow-hidden  ">
@@ -60,12 +75,12 @@ const ProductCart = ({ item }: { item: ICartItem }) => {
             <div className="text-xs text-gray-500 ml-3">({item?.stock})</div>
           </div>
         </div>
-        <a
-          href="#"
+        <button
+          onClick={addToCart}
           className="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition"
         >
           Add to cart
-        </a>
+        </button>
       </div>
     </div>
   );
