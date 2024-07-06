@@ -1,4 +1,5 @@
 "use client";
+import { useAppSelector } from "@/redux/hook";
 import { loadStripe } from "@stripe/stripe-js";
 import { useRouter } from "next/navigation";
 
@@ -6,6 +7,7 @@ const asyncStripe = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
 const CheckoutButton = ({ total }: { total: string }) => {
   const router = useRouter();
+  const cartItems = useAppSelector((state) => state.cart);
 
   const handler = async () => {
     try {
@@ -13,20 +15,24 @@ const CheckoutButton = ({ total }: { total: string }) => {
       const res = await fetch("/api/stripe/checkout-session", {
         method: "POST",
         body: JSON.stringify({
-          amout: total,
-        }),
-        headers: { "Content-Type": "application/json" },
+          amount: total,
+          quantity: 1,
+          products: cartItems,
+        } as any),
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
       const { sessionId } = await res.json();
-
+      console.log(sessionId);
       const { error } = await stripe!.redirectToCheckout({ sessionId });
       console.log(error);
       if (error) {
-        router.push("/error");
+        // router.push("/");
       }
     } catch (err) {
-      console.log(err);
-      router.push("/error");
+      console.log({ err });
+      // router.push("/error");
     }
   };
 
