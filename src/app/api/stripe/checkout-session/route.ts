@@ -16,7 +16,6 @@ export const stripe = new Stripe(
 
 export async function POST(req: NextRequest, res: any) {
   const body = await req.json();
-  console.log({ body });
   try {
     const date = new Date().toISOString();
     // res.status(200);

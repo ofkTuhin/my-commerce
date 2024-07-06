@@ -11,12 +11,7 @@ const Checkout = () => {
   const authcheck = useAuthCheck();
 
   const isLogin = useAuth();
-  console.log(isLogin);
-  // useEffect(() => {
-  //   if (!isLogin) {
-  //     return push("/login");
-  //   }
-  // }, []);
+
   if (!authcheck) {
     return <div>auth checking</div>;
   }

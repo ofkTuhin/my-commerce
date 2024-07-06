@@ -8,9 +8,9 @@ import { useSearchParams } from "next/navigation";
 
 const Search = () => {
   const order = useSearchParams().get("order");
-  const product_name = useSearchParams().get("product_name");
+  const search = useSearchParams().get("search");
   const { currentData, isLoading } = useGetSearchProductsQuery({
-    product_name: product_name,
+    search: search,
     order: order,
   }) as any;
   const { products } = currentData || {};

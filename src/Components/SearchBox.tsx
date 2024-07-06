@@ -19,7 +19,7 @@ const SearchBox = () => {
   );
   const handleSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    push(`/search` + "?" + createQueryString("product_name", searcQuery));
+    push(`/search` + "?" + createQueryString("search", searcQuery));
   };
   return (
     <form onSubmit={handleSearch} className="max-w-[600px] w-full">

@@ -12,10 +12,10 @@ const productsApiSlice = productsSliceTag.injectEndpoints({
       providesTags: ["Products"],
     }),
     getSearchProducts: builder.query({
-      query: (arg: { product_name: string; order: string }) =>
+      query: (arg: { search: string; order: string }) =>
         arg.order
-          ? `products/search?q=${arg.product_name}&sortBy=title&order=${arg.order}`
-          : `products/search?q=${arg.product_name}`,
+          ? `products/search?q=${arg.search}&sortBy=title&order=${arg.order}`
+          : `products/search?q=${arg.search}`,
       providesTags: ["Products"],
     }),
     getSingleChildProducts: builder.query({

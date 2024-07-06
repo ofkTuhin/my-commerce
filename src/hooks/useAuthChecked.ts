@@ -10,7 +10,6 @@ export default function useAuthCheck() {
 
   useEffect(() => {
     const token = Cookies.get("token");
-    console.log(token);
     if (token) {
       dispatch(
         userLoggedIn({

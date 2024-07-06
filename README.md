@@ -17,8 +17,11 @@
 ## search operations
 In Home page when enter in search box it will redirect to search page and return search results based on search.
 
+## config.json
+This file is like setting of application
 
-
+## theme.json
+In theme.json user can change color, font size, font family and other css properties
 
 ## 🚀 Getting Started
 
@@ -28,6 +31,11 @@ In Home page when enter in search box it will redirect to search page and return
 - node v20.10+
 - npm v10.2+
 - tailwind v3.3+
+
+## Api End Points
+**product:** https://dummyjson.com/products
+**search:** https://dummyjson.com/products?q=search
+**auth:** https://dummyjson.com/auth/login
 
 ### 👉 Install Dependencies
 

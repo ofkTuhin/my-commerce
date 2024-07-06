@@ -28,8 +28,8 @@ const CartItem = ({ item }: { item: ICartItem }) => {
     }
   };
   return (
-    <div className="flex items-center justify-between p-4 border-b">
-      <div className="flex items-center w-2/3">
+    <div className="flex items-start justify-between p-4 border-b">
+      <div className="flex items-center w-1/3">
         <img
           src={item.thumbnail}
           alt={item.title}
