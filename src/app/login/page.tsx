@@ -46,7 +46,7 @@ const Login = () => {
             <div className="space-y-2">
               <div>
                 <label htmlFor="username" className="text-gray-600 mb-2 block">
-                  Email address
+                  User Name
                 </label>
                 <InputField
                   type="text"

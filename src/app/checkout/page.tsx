@@ -20,16 +20,6 @@ const Checkout = () => {
   ) : (
     <section className="section pt-14">
       <div className="container pb-16">
-        <div className=" flex items-center gap-3">
-          <a href="../index.html" className="text-primary text-base">
-            <i className="fa-solid fa-house"></i>
-          </a>
-          <span className="text-sm text-gray-400">
-            <i className="fa-solid fa-chevron-right"></i>
-          </span>
-          <p className="text-gray-600 font-medium">Checkout</p>
-        </div>
-
         <div className="container grid grid-cols-12 items-start pb-16 pt-4 gap-6">
           <div className="col-span-8 border border-gray-200 p-4 rounded">
             <h3 className="text-lg font-medium capitalize mb-4">Checkout</h3>
